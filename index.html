@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JIPCET Attendance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: radial-gradient(circle, #5c0067 0%, #00d4ff 100%);
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .button {
+            padding: 10px 20px;
+            border: 3px solid white;
+            background-color: #000;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: background-color 1s, color 1s, border 0.8s;
+        }
+
+        .button:hover {
+            background-color: palevioletred;
+            color: #000;
+            border: 3px solid black;
+
+
+        }
+
+        #myh1 {
+            color: #CCCCFF;
+            font-family: "Comfortaa", sans-serif;
+        }
+
+        h3 {
+            color: #AFDBF5;
+            font-family: "Comfortaa", sans-serif;
+        }
+
+        #res {
+            display: none;
+            font-size: 16px;
+            background-color: transparent;
+            /* width: 850px; */
+            color: #E6E6FA;
+            font-family: "Comfortaa", sans-serif;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="input-container">
+        <h1 id="myh1">Enter Your attendance details.</h1>
+        <input id="totalcls" type="number" class="input" placeholder="Enter Total No.of classes">
+        <input id="totalabs" type="number" class="input" placeholder="Enter Total No.of absents">
+        <div class="button-container">
+            <button type="submit" id="btn" onclick="bttn()" class="button">Submit</button>
+            <!-- <button class="button">Cancel</button>  -->
+        </div>
+        <h1 id="res"></h1>
+    </div>
+
+
+
+    <script>
+        function bttn() {
+            let totalcls = parseInt(document.getElementById("totalcls").value);
+            let totalabs = parseInt(document.getElementById("totalabs").value);
+            let res = document.getElementById("res");
+            if (totalcls >= 0 && totalabs >= 0) {
+                if (!isNaN(totalcls) && !isNaN(totalabs)) {
+                    let attendance = ((totalcls - totalabs) / totalcls) * 100;
+                    res.innerHTML = "Your attendance is " + attendance.toFixed(2) + "%. If you absent tomorrow add +6 to total classes and total absents";
+    
+                    res.style.display = "block";
+                } else {
+                    alert("Please enter valid numbers for total classes and total absents.");
+                }
+            } else {
+                alert("Please enter Positive numbers for total classes and total absents.");
+            }
+        }
+    </script>
+    
+
+
+
+
+
+
+</body>
+
+</html>
